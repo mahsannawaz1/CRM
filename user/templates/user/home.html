@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{%static '/css/home.css' %}" />
+  </head>
+  <body>
+    <div class="side-bar side-bar__visible">
+      <h3 style="padding-top: 20px; color: grey">Dashboard</h3>
+
+      <ul class="side-bar__list">
+        <li class="list__item"><a href="#">Home</a></li>
+        <li class="list__item"><a href="#">Login</a></li>
+        <li class="list__item"><a href="#">Profile</a></li>
+        <li class="list__item"><a href="#">Logout</a></li>
+        <li class="list__item"><a href="#">Register</a></li>
+      </ul>
+      <div class="side-bar__links">
+        <a href="https://web.facebook.com/webeatthebest" target="_blank"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
+        <a href="https://www.instagram.com/" target="_blank"
+          ><i class="fa-brands fa-twitter"></i
+        ></a>
+        <a href="https://twitter.com/i/flow/login" target="_blank"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a href="https://www.linkedin.com/login" target="_blank"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+        <a href="mailto:nawazehsen@gmail.com" target="_blank"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
+      </div>
+    </div>
+  </body>
+</html>
