@@ -1,0 +1,44 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static '/css/user.css' %}" />
+  </head>
+  <body>
+    <form action="" method="POST">
+      {%csrf_token%}
+     
+      <h1>Login</h2>
+      <fieldset>
+        {%for field in form%}
+        <div>
+          <div class="label">{{field.label}}</div>
+          {{field}}
+        </div>
+        {%endfor%}
+      </fieldset>
+
+      <div style="margin-top: 0.5rem;">
+        {% if form.errors %}
+      {%for field in form%}
+      {%for error in field.errors%}
+     <p style="color:red">{{error}}</p>
+      {%endfor%}
+      {%endfor%}
+     
+      {% endif %}
+     
+      </div>
+      
+      <button class="btn" type="submit">Login</button>
+      <div style="text-align: center;text-decoration: none;margin-top: 0.5rem;">
+        Don't have an account? <a href="{%url 'register'%}">Register Now</a>
+      </div>
+    </form>
+  
+  </body>
+</html>

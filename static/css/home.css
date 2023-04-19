@@ -11,7 +11,6 @@ body{
  font-size:  1.8rem;
   background:lightskyblue;
   display:flex;
-  justify-content: space-between;
   min-height: 100vh;
 }
 /* .header{
@@ -31,6 +30,9 @@ body{
   height:100vh;
   background: #fff;
   max-width: 300px;
+  position: fixed;
+  top:0;
+  left:0;
   /* padding:1.5rem; */
 }
 .side-bar__list{
