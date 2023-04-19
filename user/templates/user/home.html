@@ -8,16 +8,23 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{%static '/css/home.css' %}" />
   </head>
-  <body>
-    <div class="side-bar side-bar__visible">
+  <body style="justify-content: flex-start; position: relative">
+    <div
+      style="position: sticky; top: 0; left: 0; bottom: 0"
+      class="side-bar side-bar__visible"
+    >
       <h3 style="padding-top: 20px; color: grey">Dashboard</h3>
 
       <ul class="side-bar__list">
+        {%if user.is_authenticated%}
         <li class="list__item"><a href="#">Home</a></li>
-        <li class="list__item"><a href="#">Login</a></li>
         <li class="list__item"><a href="#">Profile</a></li>
-        <li class="list__item"><a href="#">Logout</a></li>
+        <li class="list__item"><a href="{%url 'logout'%}">Logout</a></li>
+        {%else%}
+        <li class="list__item"><a href="#">Home</a></li>
+        <li class="list__item"><a href="{%url 'login'%}">Login</a></li>
         <li class="list__item"><a href="{%url 'register' %}">Register</a></li>
+        {%endif%}
       </ul>
       <div class="side-bar__links">
         <a href="https://web.facebook.com/webeatthebest" target="_blank"
