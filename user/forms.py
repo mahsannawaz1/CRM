@@ -37,7 +37,13 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class profileUpdateForm(forms.ModelForm):
-    phone = forms.CharField(label='Phone')
+    phone = forms.CharField(label='Phone', required=False)
+    image = forms.ImageField(label='Upload Image',
+                             widget=forms.FileInput(
+                                 attrs={
+                                     "style": "height: 35px ; width : 100% ; "}
+                             )
+                             )
 
     class Meta:
         model = Profile
@@ -45,10 +51,10 @@ class profileUpdateForm(forms.ModelForm):
 
 
 class profileAddressUpdateForm(forms.ModelForm):
-    city = forms.CharField(label='City')
-    state = forms.CharField(label='State')
-    country = forms.CharField(label='Country')
-    house_no = forms.CharField(label='Address')
+    city = forms.CharField(label='City', required=False)
+    state = forms.CharField(label='State', required=False)
+    country = forms.CharField(label='Country', required=False)
+    house_no = forms.CharField(label='Address', required=False)
 
     class Meta:
         model = Address
