@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
-from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegisterForm, UserUpdateForm, profileUpdateForm, profileAddressUpdateForm
 # Create your views here.
 
 
@@ -21,3 +22,35 @@ def userRegister(request):
         'form': form
     }
     return render(request, 'user/register.html', context)
+
+
+@login_required
+def userProfile(request):
+    return render(request, 'user/profile.html')
+
+
+@login_required
+def userProfileUpdate(request):
+    form_1 = UserUpdateForm(request.POST, instance=request.user)
+    form_2 = profileUpdateForm(
+        request.POST, request.FILES, instance=request.user.profile)
+    form_3 = profileAddressUpdateForm(
+        request.POST, instance=request.user.profile.address)
+    if request.method == 'POST':
+        form_1 = UserUpdateForm(request.POST, instance=request.user)
+        form_2 = profileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        form_3 = profileAddressUpdateForm(
+            request.POST, instance=request.user.profile.address)
+        if form_1.is_valid() and form_2.is_valid() and form_3.is_valid():
+            form_1.save()
+            form_2.save()
+            form_3.save()
+            return redirect('profile')
+
+    context = {
+        'form_1': form_1,
+        'form_2': form_2,
+        'form_3': form_3
+    }
+    return render(request, 'user/update_profile.html', context)

@@ -1,0 +1,79 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static '/css/user.css' %}" />
+  </head>
+  <body>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+     
+      <h1>Update Profile</h2>
+      <fieldset>
+        {%for field in form_1%}
+        <div>
+          <div class="label">{{field.label}}</div>
+          {{field}}
+        </div>
+        {%endfor%}
+      </fieldset>
+      <fieldset>
+        {%for field in form_3%}
+        <div>
+          <div class="label">{{field.label}}</div>
+          {{field}}
+        </div>
+        {%endfor%}
+      </fieldset>
+
+      <fieldset>
+        {%for field in form_2%}
+        <div>
+          <div class="label">{{field.label}}</div>
+          {{field}}
+        </div>
+        {%endfor%}
+      </fieldset>
+
+
+   
+
+
+      <div style="margin-top: 0.5rem;">
+        {% if form.errors %}
+      {%for field in form_1%}
+      {%for error in field.errors%}
+     <p style="color:red">{{error}}</p>
+      {%endfor%}
+      {%endfor%}
+     
+      {% endif %}
+     
+      {% if form.errors %}
+      {%for field in form_2%}
+      {%for error in field.errors%}
+     <p style="color:red">{{error}}</p>
+      {%endfor%}
+      {%endfor%}
+     
+      {% endif %}
+
+      {% if form.errors %}
+      {%for field in form_3%}
+      {%for error in field.errors%}
+     <p style="color:red">{{error}}</p>
+      {%endfor%}
+      {%endfor%}
+     
+      {% endif %}
+      </div>
+      
+      <button class="btn" type="submit">Update</button>
+    </form>
+   
+  </body>
+</html>
