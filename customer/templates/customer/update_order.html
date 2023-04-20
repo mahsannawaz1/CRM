@@ -9,36 +9,31 @@
     <link rel="stylesheet" href="{%static '/css/user.css' %}" />
   </head>
   <body>
-    <form action="" method="POST">
+    {%if user.is_authenticated%}
+
+   
+    <form action="" method="POST" >
       {%csrf_token%}
      
-      <h1>Login</h2>
-        {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-        <p style="background: #d9534f;color:#fff;padding: 0.5rem;"> {{error}}</p>
-    {% endfor %}
-      
-    
-        {% endif %}
+      <h1>Update Order</h2>
       <fieldset>
         {%for field in form%}
-        
         <div>
           <div class="label">{{field.label}}</div>
           {{field}}
-          
-          
+          {%for error in field.errors%}
+          <p style="color:red">{{error}}</p>
+           {%endfor%}
         </div>
         {%endfor%}
       </fieldset>
 
-      
-      
-      <button class="btn" type="submit">Login</button>
-      <div style="text-align: center;text-decoration: none;margin-top: 0.5rem;">
-        Don't have an account? <a href="{%url 'register'%}">Register Now</a>
-      </div>
-    </form>
   
+      <button class="btn" type="submit">Update Order</button>
+    </form>
+   
+   
+    {%endif%}
+
   </body>
 </html>

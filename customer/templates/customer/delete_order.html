@@ -1,0 +1,39 @@
+{%extends 'user/home.html'%} {%load static%}{%block content%}
+<div style="text-align: center; margin-left: 5rem">
+  <h1>Are You sure You want to Delete the " Order#{{order.id}} "?</h1>
+  <a href="{%url 'list_products'%}">
+    <button
+      style="
+        cursor: pointer;
+        border: 1px solid black;
+        outline: 0;
+        padding: 0.5rem;
+        border-radius: 0.4rem;
+        color: green;
+      "
+    >
+      Go Back
+    </button>
+  </a>
+  <form action="" method="POST">
+    {%csrf_token%}
+
+    <a href="{%url 'list_products'%}">
+      <button
+        type="submit"
+        style="
+          cursor: pointer;
+          border: 1px solid black;
+          outline: 0;
+          padding: 0.5rem;
+          border-radius: 0.4rem;
+          color: red;
+        "
+      >
+        Delete
+      </button>
+    </a>
+  </form>
+</div>
+
+{%endblock content%}

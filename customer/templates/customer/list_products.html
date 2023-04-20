@@ -1,0 +1,82 @@
+{%extends 'user/home.html'%} {%load static%}{%block content%}
+
+<div>
+  <h1 style="text-align: center; margin-bottom: 2rem; margin-left: 35rem">
+    PRODUCTS
+  </h1>
+  {%for product in products%}
+  <div
+    style="
+      background: white;
+      padding: 2rem;
+      margin-left: 30rem;
+      margin-bottom: 2rem;
+      border-radius: 5px;
+
+      display: flex;
+    "
+  >
+    <img
+      style="
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        object-fit: cover;
+
+        margin-right: 1rem;
+      "
+      src="/media/{{product.image}}"
+      alt="{{product.name}}"
+    />
+    <div>
+      <p>Name: {{product.name}}</p>
+
+      {%if user.is_superuser%} Created By:
+      <a style="text-decoration: none; color: green" href="{%url 'profile'%}">
+        {{user.first_name}} {{user.last_name}}</a
+      >
+      {%endif%}
+
+      <p>Price: {{product.price}}</p>
+      <p>Weight: {{product.weight}}</p>
+      <p>Inventory Left: {{product.inventory}}</p>
+      <p>Barcode:{{product.barcode}}</p>
+      {%if user.is_authenticated%} {%if user.is_superuser%}
+      <button
+        style="
+          border: 1px solid black;
+          outline: 0;
+          padding: 0.5rem;
+          border-radius: 0.4rem;
+        "
+      >
+        <a
+          style="text-decoration: none; color: green"
+          href="{%url 'update_product' product.id%}"
+        >
+          Update</a
+        >
+      </button>
+
+      <button
+        style="
+          border: 1px solid black;
+          outline: 0;
+          padding: 0.5rem;
+          border-radius: 0.4rem;
+        "
+      >
+        <a
+          style="text-decoration: none; color: red"
+          href="{%url 'delete_product' product.id%}"
+        >
+          Delete</a
+        >
+      </button>
+      {%else%} {%endif%} {%endif%}
+    </div>
+  </div>
+  {%endfor%}
+</div>
+
+{%endblock content%}
