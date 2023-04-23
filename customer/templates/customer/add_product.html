@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{%static '/css/user.css' %}" />
   </head>
   <body>
-    {%if user.is_authenticated%}
-
-    {%if user.is_superuser%}
     <form action="" method="POST" enctype="multipart/form-data">
       {%csrf_token%}
      
@@ -32,14 +29,7 @@
       <button class="btn" type="submit">Add Product</button>
     </form>
    
-    {%else%}
-    <div style="text-align: center;text-decoration: none;margin-top: 1rem;">
-      <h1 >You are not a Super User!</h1>
-      <a href="{%url 'login'%}">Login Now</a>
-    </div>
-  
-    {%endif%}
-    {%endif%}
+   
 
   </body>
 </html>

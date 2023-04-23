@@ -3,12 +3,14 @@ from .forms import productCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Product, Order
+from user.decorators import allowed_users
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
 
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def addProduct(request):
     form = productCreationForm()
     if request.method == 'POST':
@@ -23,6 +25,7 @@ def addProduct(request):
     return render(request, 'customer/add_product.html', context)
 
 
+@login_required
 def listProducts(request):
     products = Product.objects.all().values()
     context = {
@@ -33,6 +36,7 @@ def listProducts(request):
 
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def updateProduct(request, pk):
     product = Product.objects.get(id=pk)
     form = productCreationForm(instance=product)
@@ -51,6 +55,7 @@ def updateProduct(request, pk):
 
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == 'POST':

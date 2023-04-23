@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user
 from .forms import UserRegisterForm, UserUpdateForm, profileUpdateForm, profileAddressUpdateForm
 # Create your views here.
 
@@ -9,6 +10,7 @@ def home(request):
     return render(request, 'user/home.html')
 
 
+@unauthenticated_user
 def userRegister(request):
     form = UserRegisterForm()
     if request.method == 'POST':
